@@ -5,6 +5,7 @@ CREATE TABLE user(
 
 CREATE TABLE playerCharacter(
     pc_name varchar(20) NOT NULL, --KEY--
+    pc_key deciaml(4,0) NOT NULL, --Link to user TBL--
     pc_race varchar(15) NOT NULL,
     pc_class decimal(2,0) NOT NULL,
     pc_level decimal(2,0) NOT NULL
@@ -49,14 +50,13 @@ CREATE TABLE spell(
 
 --POPULATE TABLE--
 INSERT INTO user(u_key, u_name) 
-VALUES (rowid, 'Matias'),
-    (rowid, 'Patrick'),
-    (rowid, 'Jaeha'),
-    (rowid, 'Loic'),
-    (rowid, 'Adam');
+VALUES (0, 'Patrick'),
+    (1, 'Jaeha'),
+    (2, 'Loic'),
+    (3, 'Adam');
 
-INSERT INTO playerCharacter(pc_name, pc_race, pc_class, pc_level)
-VALUES ('Libson', 'HUMAN', 1, 4);
+INSERT INTO playerCharacter(pc_name, pc_key, pc_race, pc_class, pc_level)
+VALUES ('Libson', 0, 'HUMAN', 7, 4);
 
 INSERT INTO class(cl_id, cl_name)
 VALUES(0, 'barbarian'),
