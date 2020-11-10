@@ -16,13 +16,13 @@ CREATE TABLE user(
 
 CREATE TABLE playerCharacter(
     pc_name varchar(20) NOT NULL, --KEY--
-    pc_key deciaml(4,0) NOT NULL, --Link to user TBL--
-    pc_race varchar(15) NOT NULL,
+    pc_key decimal(4,0) NOT NULL, --Link to user TBL--
     pc_class decimal(2,0) NOT NULL,
     pc_level decimal(2,0) NOT NULL
 );
 
 CREATE TABLE background(
+    bg_name varchar(20) NOT NULL,
     bg_race varchar(15) NOT NULL,
     bg_age decimal(4,0) NOT NULL,   
     bg_alignment char(20) NOT NULL
@@ -67,13 +67,13 @@ VALUES (0, 'Patrick'),
     (2, 'Loic'),
     (3, 'Adam');
 
-INSERT INTO playerCharacter(pc_name, pc_key, pc_race, pc_class, pc_level)
-VALUES ('Libson', 0, 'HUMAN', 8, 4),
-    ('Logan', 3, 'HALF-ELF', 3, 4),
-    ('Ashkara', 1, 'HALF-ORC', 7, 4),
-    ('Nazu', 1, 'HALF-ORC', 5, 3),
-    ('Midir', 0, 'DRAGONBORN', 9, 7),
-    ('Jojo', 1, 'HALF-ELF', 7, 1);
+INSERT INTO playerCharacter(pc_name, pc_key, pc_class, pc_level)
+VALUES ('Libson', 0, 8, 4),
+    ('Logan', 3, 3, 4),
+    ('Ashkara', 1, 7, 4),
+    ('Nazu', 1, 5, 3),
+    ('Midir', 0, 9, 7),
+    ('Jojo', 1, 7, 1);
 
 INSERT INTO background(bg_name, bg_race, bg_age, bg_alignment)
 VALUES ('Libson', 'HUMAN', 24, 'True Neutral'),
@@ -81,7 +81,7 @@ VALUES ('Libson', 'HUMAN', 24, 'True Neutral'),
     ('Ashkara', 'HALF-ORC', 45, 'Lawful Good'),
     ('Nazu', 'HALF-ORC', 60, 'Lawful Neutral'),
     ('Midir', 'DRAGONBORN', 15, 'Chaotic Neutral'),
-    ('Jojo', 'HALF-ELF', 120, 'Lawful Evil');
+    ('Jojo', 'HALF-ELF', 120, 'Chaotic Neutral');
 
 INSERT INTO class(cl_id, cl_name)
 VALUES (0, 'barbarian'),
