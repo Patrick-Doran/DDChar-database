@@ -117,6 +117,7 @@ VALUES ('shortsword', 5, '1d6'),
     ('longbow', 150, '1d8'),
     ('mace', 5, '1d6');
 
+--Druid spells
 INSERT INTO classSpell(clsp_ability, clsp_id, clsp_name)
 VALUES ('WIS', 3, 'animal friendship'),
     ('WIS', 3, 'charm person'),
@@ -141,8 +142,11 @@ VALUES ('WIS', 3, 'animal friendship'),
     ('WIS', 3, 'gust of wind'),
     ('WIS', 3, 'protection from poison'),
     ('WIS', 3, 'detect poison and disease'),
-    ('WIS', 3, 'find traps'),
-    ('WIS', 7, 'animal friendship'),
+    ('WIS', 3, 'find traps');
+
+--Ranger Spells
+INSERT INTO classSpell(clsp_ability, clsp_id, clsp_name)
+VALUES ('WIS', 7, 'animal friendship'),
     ('WIS', 7, 'barkskin'),
     ('WIS', 7, 'cure wounds'),
     ('WIS', 7, 'detect magic'),
@@ -162,8 +166,11 @@ VALUES ('WIS', 3, 'animal friendship'),
     ('WIS', 7, 'darkvision'),
     ('WIS', 7, 'silence'),
     ('WIS', 7, 'detect poison and disease'),
-    ('WIS', 7, 'find traps'),
-    ('CHR', 9, 'charm person'),
+    ('WIS', 7, 'find traps');
+
+--Sorcerer Spells
+INSERT INTO classSpell(clsp_ability, clsp_id, clsp_name)
+VALUES ('CHR', 9, 'charm person'),
     ('CHR', 9, 'detect magic'),
     ('CHR', 9, 'fog cloud'),
     ('CHR', 9, 'thunderwave'),
@@ -182,7 +189,32 @@ VALUES ('WIS', 3, 'animal friendship'),
     ('CHR', 9, 'see invisibility'),
     ('CHR', 9, 'shatter'),
     ('CHR', 9, 'suggestion'),
-    ('CHR', 9, 'burning hands');
+    ('CHR', 9, 'burning hands'),
+    ('CHR', 9, 'mage armor');
+
+--Wizard Spells
+INSERT INTO classSpell(clsp_ability, clsp_id, clsp_name)
+VALUES ('INT', 11, 'burning hands'),
+    ('INT', 11, 'charm person'),
+    ('INT', 11, 'detect magic'),
+    ('INT', 11, 'false life'),
+    ('INT', 11, 'fog cloud'),
+    ('INT', 11, 'jump'),
+    ('INT', 11, 'longstrider'),
+    ('INT', 11, 'mage armor'),
+    ('INT', 11, 'magic missile'),
+    ('INT', 11, 'thunderwave'),
+    ('INT', 11, 'witch bolt'),
+    ('INT', 11, 'cloud of daggers'),
+    ('INT', 11, 'darkvision'),
+    ('INT', 11, 'gust of wind'),
+    ('INT', 11, 'levitate'),
+    ('INT', 11, 'scorching ray'),
+    ('INT', 11, 'see invisibility'),
+    ('INT', 11, 'shatter'),
+    ('INT', 11, 'spider climb'),
+    ('INT', 11, 'rope trick'),
+    ('INT', 11, 'magic mouth');
 
 INSERT INTO spell(sp_name, sp_slotlevel, sp_range, sp_castingtype, sp_effect, sp_die)
 VALUES ('animal friendship', 1, 30, 'action', 'charm', 'N/A'),
@@ -223,9 +255,10 @@ VALUES ('animal friendship', 1, 30, 'action', 'charm', 'N/A'),
     ('darkvision', 2, 5, 'action', 'buff', 'N/A'),
     ('see invisibility', 2, 0, 'action', 'detection', 'N/A'),
     ('shatter', 2, 60, 'action', 'damage', '3d8'),
-    ('silence', 2, 120, 'action', 'control', 'N/A'),
     ('detect poison and disease', 1, 0, 'action', 'detection', 'N/A'),
     ('find traps', 2, 120, 'action', 'detection', 'N/A'),
     ('suggestion', 2, 30, 'action', 'control', 'N/A'),
-    ('burning hands', 1, 0, 'action', 'damage', '3d6');
+    ('burning hands', 1, 0, 'action', 'damage', '3d6'),
+    ('rope trick', 2, 5, 'action', 'utility', 'N/A'),
+    ('magic mouth', 2, 30, 'action', 'communication', 'N/A');
 
