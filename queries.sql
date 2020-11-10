@@ -89,7 +89,7 @@ INNER JOIN classWeapon ON classWeapon.clwpn_id = class.cl_id
 INNER JOIN classSpell ON classSpell.clsp_id = class.cl_id
 INNER JOIN spell ON spell.sp_name = classSpell.clsp_name
 WHERE sp_effect = 'charm' AND clwpn_name = 'dagger'
-GROUP BY pc_name
+GROUP BY pc_name;
 
 --14) List spells usable by characters that are Half-Elves
 SELECT sp_name AS spell FROM spell
@@ -98,7 +98,7 @@ INNER JOIN class ON class.cl_id = classSpell.clsp_id
 INNER JOIN playerCharacter ON playerCharacter.pc_class = class.cl_id
 INNER JOIN background ON playerCharacter.pc_name = background.bg_name
 WHERE bg_race = 'HALF-ELF' AND sp_slotLevel <= pc_level
-GROUP BY sp_name
+GROUP BY sp_name;
 
 --15) List spells that are exclusively used by wizards
 SELECT sp_name AS spell FROM spell
