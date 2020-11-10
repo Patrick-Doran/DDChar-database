@@ -1,3 +1,14 @@
+--Drop Table
+DROP TABLE user;
+DROP TABLE playerCharacter;
+DROP TABLE background;
+DROP TABLE class;
+DROP TABLE classWeapon;
+DROP TABLE weapon;
+DROP TABLE classSpell;
+DROP TABLE spell;
+
+--Create Table
 CREATE TABLE user(
     u_key decimal(4,0) NOT NULL, --KEY--
     u_name varchar(25) NOT NULL
