@@ -1,3 +1,14 @@
+--Drop Table
+DROP TABLE user;
+DROP TABLE playerCharacter;
+DROP TABLE background;
+DROP TABLE class;
+DROP TABLE classWeapon;
+DROP TABLE weapon;
+DROP TABLE classSpell;
+DROP TABLE spell;
+
+--Create Table
 CREATE TABLE user(
     u_key decimal(4,0) NOT NULL, --KEY--
     u_name varchar(25) NOT NULL
@@ -5,16 +16,16 @@ CREATE TABLE user(
 
 CREATE TABLE playerCharacter(
     pc_name varchar(20) NOT NULL, --KEY--
-    pc_key deciaml(4,0) NOT NULL, --Link to user TBL--
-    pc_race varchar(15) NOT NULL,
+    pc_key decimal(4,0) NOT NULL, --Link to user TBL--
     pc_class decimal(2,0) NOT NULL,
     pc_level decimal(2,0) NOT NULL
 );
 
 CREATE TABLE background(
+    bg_name varchar(20) NOT NULL,
     bg_race varchar(15) NOT NULL,
     bg_age decimal(4,0) NOT NULL,   
-    bg_alignment char(2) NOT NULL
+    bg_alignment char(20) NOT NULL
 );
 
 CREATE TABLE class(
@@ -56,19 +67,21 @@ VALUES (0, 'Patrick'),
     (2, 'Loic'),
     (3, 'Adam');
 
-INSERT INTO playerCharacter(pc_name, pc_key, pc_race, pc_class, pc_level)
-VALUES ('Libson', 0, 'HUMAN', 8, 4),
-    ('Logan', 3, 'HALF-ELF', 3, 4),
-    ('Ashkara', 1, 'HALF-ORC', 7, 4),
-    ('Nazu', 1, 'HALF-ORC', 5, 3),
-    ('Midir', 0, 'DRAGONBORN', 9, 7);
+INSERT INTO playerCharacter(pc_name, pc_key, pc_class, pc_level)
+VALUES ('Libson', 0, 8, 4),
+    ('Logan', 3, 3, 4),
+    ('Ashkara', 1, 7, 4),
+    ('Nazu', 1, 5, 3),
+    ('Midir', 0, 9, 7),
+    ('Jojo', 1, 7, 1);
 
-INSERT INTO background(bg_race, bg_age, bg_alignment)
-VALUES ('HUMAN', 24, 'TN'),
-    ('HALF-ELF', 156, 'NG'),
-    ('HALF-ORC', 45, 'LG'),
-    ('HALF-ORC', 60, 'LN'),
-    ('DRAGONBORN', 15, 'CN');
+INSERT INTO background(bg_name, bg_race, bg_age, bg_alignment)
+VALUES ('Libson', 'HUMAN', 24, 'True Neutral'),
+    ('Logan', 'HALF-ELF', 156, 'Neutral Good'),
+    ('Ashkara', 'HALF-ORC', 45, 'Lawful Good'),
+    ('Nazu', 'HALF-ORC', 60, 'Lawful Neutral'),
+    ('Midir', 'DRAGONBORN', 15, 'Chaotic Neutral'),
+    ('Jojo', 'HALF-ELF', 120, 'Chaotic Neutral');
 
 INSERT INTO class(cl_id, cl_name)
 VALUES (0, 'barbarian'),
@@ -93,7 +106,10 @@ VALUES ('T', 'shortsword', 8),
     ('T', 'longbow', 7),
     ('T', 'dagger', 5),
     ('T', 'quarterstaff', 9),
-    ('F', 'mace', 9);
+    ('F', 'mace', 9),
+    ('T', 'dagger', 6),
+    ('T', 'dagger', 7),
+    ('T', 'dagger', 3);
 
 INSERT INTO weapon(wpn_name, wpn_range, wpn_damage)
 VALUES ('shortsword', 5, '1d6'),
@@ -104,6 +120,7 @@ VALUES ('shortsword', 5, '1d6'),
     ('longbow', 150, '1d8'),
     ('mace', 5, '1d6');
 
+--Druid spells
 INSERT INTO classSpell(clsp_ability, clsp_id, clsp_name)
 VALUES ('WIS', 3, 'animal friendship'),
     ('WIS', 3, 'charm person'),
@@ -128,8 +145,23 @@ VALUES ('WIS', 3, 'animal friendship'),
     ('WIS', 3, 'gust of wind'),
     ('WIS', 3, 'protection from poison'),
     ('WIS', 3, 'detect poison and disease'),
-    ('WIS', 3, 'find traps'),
-    ('WIS', 7, 'animal friendship'),
+    ('WIS', 3, 'find traps');
+
+--Paladin Spells
+INSERT INTO classSpell(clsp_ability, clsp_id, clsp_name)
+VALUES ('CHR', 6, 'cure wounds'),
+    ('CHR', 6, 'detect magic'),
+    ('CHR', 6, 'detect poision and disease'),
+    ('CHR', 6, 'lesser restoration'),
+    ('CHR', 6, 'protection from poison'),
+    ('CHR', 6, 'aid'),
+    ('CHR', 6, 'command'),
+    ('CHR', 6, 'heroism'),
+    ('CHR', 6, 'find steed');
+
+--Ranger Spells
+INSERT INTO classSpell(clsp_ability, clsp_id, clsp_name)
+VALUES ('WIS', 7, 'animal friendship'),
     ('WIS', 7, 'barkskin'),
     ('WIS', 7, 'cure wounds'),
     ('WIS', 7, 'detect magic'),
@@ -149,8 +181,11 @@ VALUES ('WIS', 3, 'animal friendship'),
     ('WIS', 7, 'darkvision'),
     ('WIS', 7, 'silence'),
     ('WIS', 7, 'detect poison and disease'),
-    ('WIS', 7, 'find traps'),
-    ('CHR', 9, 'charm person'),
+    ('WIS', 7, 'find traps');
+
+--Sorcerer Spells
+INSERT INTO classSpell(clsp_ability, clsp_id, clsp_name)
+VALUES ('CHR', 9, 'charm person'),
     ('CHR', 9, 'detect magic'),
     ('CHR', 9, 'fog cloud'),
     ('CHR', 9, 'thunderwave'),
@@ -169,7 +204,33 @@ VALUES ('WIS', 3, 'animal friendship'),
     ('CHR', 9, 'see invisibility'),
     ('CHR', 9, 'shatter'),
     ('CHR', 9, 'suggestion'),
-    ('CHR', 9, 'burning hands');
+    ('CHR', 9, 'burning hands'),
+    ('CHR', 9, 'mage armor');
+
+--Wizard Spells
+INSERT INTO classSpell(clsp_ability, clsp_id, clsp_name)
+VALUES ('INT', 11, 'burning hands'),
+    ('INT', 11, 'charm person'),
+    ('INT', 11, 'detect magic'),
+    ('INT', 11, 'expeditious retreat'),
+    ('INT', 11, 'false life'),
+    ('INT', 11, 'fog cloud'),
+    ('INT', 11, 'jump'),
+    ('INT', 11, 'longstrider'),
+    ('INT', 11, 'mage armor'),
+    ('INT', 11, 'magic missile'),
+    ('INT', 11, 'thunderwave'),
+    ('INT', 11, 'witch bolt'),
+    ('INT', 11, 'cloud of daggers'),
+    ('INT', 11, 'darkvision'),
+    ('INT', 11, 'gust of wind'),
+    ('INT', 11, 'levitate'),
+    ('INT', 11, 'scorching ray'),
+    ('INT', 11, 'see invisibility'),
+    ('INT', 11, 'shatter'),
+    ('INT', 11, 'spider climb'),
+    ('INT', 11, 'rope trick'),
+    ('INT', 11, 'magic mouth');
 
 INSERT INTO spell(sp_name, sp_slotlevel, sp_range, sp_castingtype, sp_effect, sp_die)
 VALUES ('animal friendship', 1, 30, 'action', 'charm', 'N/A'),
@@ -210,9 +271,14 @@ VALUES ('animal friendship', 1, 30, 'action', 'charm', 'N/A'),
     ('darkvision', 2, 5, 'action', 'buff', 'N/A'),
     ('see invisibility', 2, 0, 'action', 'detection', 'N/A'),
     ('shatter', 2, 60, 'action', 'damage', '3d8'),
-    ('silence', 2, 120, 'action', 'control', 'N/A'),
     ('detect poison and disease', 1, 0, 'action', 'detection', 'N/A'),
     ('find traps', 2, 120, 'action', 'detection', 'N/A'),
     ('suggestion', 2, 30, 'action', 'control', 'N/A'),
-    ('burning hands', 1, 0, 'action', 'damage', '3d6');
+    ('burning hands', 1, 0, 'action', 'damage', '3d6'),
+    ('rope trick', 2, 5, 'action', 'utility', 'N/A'),
+    ('magic mouth', 2, 30, 'action', 'communication', 'N/A'),
+    ('aid', 2, 30, 'action', 'buff', 'N/A'),
+    ('command', 1, 60, 'action', 'control', 'N/A'),
+    ('heroism', 1, 5, 'action', 'buff', 'N/A'),
+    ('find steed', 2, 30, 'action', 'summon', 'N/A');
 
