@@ -25,7 +25,7 @@ CREATE TABLE playerCharacter(
 CREATE TABLE background(
     bg_race varchar(15) NOT NULL,
     bg_age decimal(4,0) NOT NULL,   
-    bg_alignment char(2) NOT NULL
+    bg_alignment char(20) NOT NULL
 );
 
 CREATE TABLE class(
@@ -72,14 +72,16 @@ VALUES ('Libson', 0, 'HUMAN', 8, 4),
     ('Logan', 3, 'HALF-ELF', 3, 4),
     ('Ashkara', 1, 'HALF-ORC', 7, 4),
     ('Nazu', 1, 'HALF-ORC', 5, 3),
-    ('Midir', 0, 'DRAGONBORN', 9, 7);
+    ('Midir', 0, 'DRAGONBORN', 9, 7),
+    ('Jojo', 1, 'HALF-ELF', 7, 1);
 
-INSERT INTO background(bg_race, bg_age, bg_alignment)
-VALUES ('HUMAN', 24, 'TN'),
-    ('HALF-ELF', 156, 'NG'),
-    ('HALF-ORC', 45, 'LG'),
-    ('HALF-ORC', 60, 'LN'),
-    ('DRAGONBORN', 15, 'CN');
+INSERT INTO background(bg_name, bg_race, bg_age, bg_alignment)
+VALUES ('Libson', 'HUMAN', 24, 'True Neutral'),
+    ('Logan', 'HALF-ELF', 156, 'Neutral Good'),
+    ('Ashkara', 'HALF-ORC', 45, 'Lawful Good'),
+    ('Nazu', 'HALF-ORC', 60, 'Lawful Neutral'),
+    ('Midir', 'DRAGONBORN', 15, 'Chaotic Neutral'),
+    ('Jojo', 'HALF-ELF', 120, 'Lawful Evil');
 
 INSERT INTO class(cl_id, cl_name)
 VALUES (0, 'barbarian'),
