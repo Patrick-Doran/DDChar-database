@@ -106,7 +106,10 @@ VALUES ('T', 'shortsword', 8),
     ('T', 'longbow', 7),
     ('T', 'dagger', 5),
     ('T', 'quarterstaff', 9),
-    ('F', 'mace', 9);
+    ('F', 'mace', 9),
+    ('T', 'dagger', 6),
+    ('T', 'dagger', 7),
+    ('T', 'dagger', 3);
 
 INSERT INTO weapon(wpn_name, wpn_range, wpn_damage)
 VALUES ('shortsword', 5, '1d6'),
@@ -143,6 +146,18 @@ VALUES ('WIS', 3, 'animal friendship'),
     ('WIS', 3, 'protection from poison'),
     ('WIS', 3, 'detect poison and disease'),
     ('WIS', 3, 'find traps');
+
+--Paladin Spells
+INSERT INTO classSpell(clsp_ability, clsp_id, clsp_name)
+VALUES ('CHR', 6, 'cure wounds'),
+    ('CHR', 6, 'detect magic'),
+    ('CHR', 6, 'detect poision and disease'),
+    ('CHR', 6, 'lesser restoration'),
+    ('CHR', 6, 'protection from poison'),
+    ('CHR', 6, 'aid'),
+    ('CHR', 6, 'command'),
+    ('CHR', 6, 'heroism'),
+    ('CHR', 6, 'find steed');
 
 --Ranger Spells
 INSERT INTO classSpell(clsp_ability, clsp_id, clsp_name)
@@ -197,6 +212,7 @@ INSERT INTO classSpell(clsp_ability, clsp_id, clsp_name)
 VALUES ('INT', 11, 'burning hands'),
     ('INT', 11, 'charm person'),
     ('INT', 11, 'detect magic'),
+    ('INT', 11, 'expeditious retreat'),
     ('INT', 11, 'false life'),
     ('INT', 11, 'fog cloud'),
     ('INT', 11, 'jump'),
@@ -260,5 +276,9 @@ VALUES ('animal friendship', 1, 30, 'action', 'charm', 'N/A'),
     ('suggestion', 2, 30, 'action', 'control', 'N/A'),
     ('burning hands', 1, 0, 'action', 'damage', '3d6'),
     ('rope trick', 2, 5, 'action', 'utility', 'N/A'),
-    ('magic mouth', 2, 30, 'action', 'communication', 'N/A');
+    ('magic mouth', 2, 30, 'action', 'communication', 'N/A'),
+    ('aid', 2, 30, 'action', 'buff', 'N/A'),
+    ('command', 1, 60, 'action', 'control', 'N/A'),
+    ('heroism', 1, 5, 'action', 'buff', 'N/A'),
+    ('find steed', 2, 30, 'action', 'summon', 'N/A');
 
