@@ -23,3 +23,7 @@ npm install md5
 `npm run start`
 
 The web server will run on http://localhost:8000/ by default.
+
+#### References
+UC Merced CSE 111 lecutres
+Developer How-To: [Build a REST API with Node.js SQLite and Express JS](https://developerhowto.com/2018/12/29/build-a-rest-api-with-node-js-and-express-js/)
