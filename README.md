@@ -4,7 +4,6 @@ This is a project for UC Merced's CSE 111 Database Systems. We will be creating 
 
 ## Requirements
 Make sure to have Node JS and npm installed/updated.
-You can get Node JS [here.](https://nodejs.org/en/about/) 
 NPM should be included with Node JS, to check use
 ```
 node -v
@@ -28,3 +27,5 @@ The web server will run on http://localhost:8000/ by default.
 UC Merced CSE 111 lectures
 
 Developer How-To: [Build a REST API with Node.js SQLite and Express JS](https://developerhowto.com/2018/12/29/build-a-rest-api-with-node-js-and-express-js/)
+
+Geeksforgeeks : [Run Python script from Node.js using child process spawn() method](https://www.geeksforgeeks.org/run-python-script-node-js-using-child-process-spawn-method/)
