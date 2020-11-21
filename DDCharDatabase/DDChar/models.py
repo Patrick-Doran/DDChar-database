@@ -71,6 +71,7 @@ class User(models.Model):
     u_name = models.CharField(max_length=25)
 
     class Meta:
+        managed = 'True'
         db_table = 'user'
 
 
