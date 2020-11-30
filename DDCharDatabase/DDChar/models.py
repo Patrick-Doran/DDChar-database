@@ -67,7 +67,7 @@ class Spell(models.Model):
 
 
 class User(models.Model):
-    u_key = models.IntegerField(default=0)
+    u_key = models.IntegerField(default=0, primary_key = True)
     u_name = models.CharField(max_length=25)
 
     class Meta:
