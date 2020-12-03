@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.template import loader
-from .models import *
+from .models import * #VSCode hates this, I don't know why, it just does
 from django.db import connection
 
 # Create your views here.
