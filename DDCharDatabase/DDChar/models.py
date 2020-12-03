@@ -14,6 +14,9 @@ class Background(models.Model):
     bg_age = models.IntegerField(default=0)
     bg_alignment = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.bg_name
+
     class Meta:
         db_table = 'background'
 
@@ -21,6 +24,9 @@ class Background(models.Model):
 class Class(models.Model):
     cl_id = models.IntegerField(default=0)
     cl_name = models.CharField(max_length=15)
+
+    def __str__(self):
+        return self.cl_name
 
     class Meta:
         db_table = 'class'
@@ -31,6 +37,9 @@ class Classspell(models.Model):
     clsp_id = models.IntegerField(default=0)
     clsp_name = models.CharField(max_length=25)
 
+    def __str__(self):
+        return self.clsp_id + ' ' + self.clsp_name
+
     class Meta:
         db_table = 'classSpell'
 
@@ -39,6 +48,9 @@ class Classweapon(models.Model):
     clwpn_prof = models.CharField(max_length=1)
     clwpn_name = models.CharField(max_length=25)
     clwpn_id = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return self.clwpn_id + ' ' + self.clwpn_name
 
     class Meta:
         db_table = 'classWeapon'
@@ -49,6 +61,9 @@ class Playercharacter(models.Model):
     pc_key = models.IntegerField(default=0)
     pc_class = models.IntegerField(default=0)
     pc_level = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return self.pc_name
 
     class Meta:
         db_table = 'playerCharacter'
@@ -62,6 +77,9 @@ class Spell(models.Model):
     sp_effect = models.CharField(max_length=25)
     sp_die = models.CharField(max_length=12)
 
+    def __str__(self):
+        return self.sp_name
+
     class Meta:
         db_table = 'spell'
 
@@ -69,6 +87,9 @@ class Spell(models.Model):
 class User(models.Model):
     u_key = models.IntegerField(default=0, primary_key = True)
     u_name = models.CharField(max_length=25)
+    
+    def __str__(self):
+        return self.u_name
 
     class Meta:
         managed = 'True'
@@ -79,6 +100,9 @@ class Weapon(models.Model):
     wpn_name = models.CharField(max_length=25)
     wpn_range = models.IntegerField(default=0)
     wpn_damage = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.wpn_name
 
     class Meta:
         db_table = 'weapon'

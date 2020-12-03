@@ -13,5 +13,12 @@
             <a class="active" href=" ">Character</a>
             <a href="spells/">Spells</a>
         </div>
+        <div>
+            <h1>User list</h1>
+            <!--craetes variable userbase that goes through the variable all(established in views.py)-->
+            {% for userbase in all %} 
+            <p>{{ userbase.u_id}}    {{ userbase.u_name }}</p>
+            {% endfor %}
+        </div>
     </body>
 </html>

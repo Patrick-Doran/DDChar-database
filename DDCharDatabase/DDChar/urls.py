@@ -1,10 +1,9 @@
 from django.urls import path
-
 from . import views
 
 urlpatterns = [
-    #index
+    #url for home
     path('', views.index, name='index'),
-    #/DDChar/character/userName
+    #url for spell
     path('spells/', views.spells, name='spells'),
 ]
