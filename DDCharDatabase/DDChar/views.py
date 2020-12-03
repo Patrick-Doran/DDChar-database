@@ -1,21 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import *
+from django.template import loader
+from .models import * #VSCode hates this, I don't know why, it just does
+from django.db import connection
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Hellow World, you are on DDChar.")
+    print("Rendered index")
+    all_members = User.objects.all
+    return render(request, "DDChar/index.html", {'all':all_members}) #Pass all to html via dictionary
 
-def getUser(request, userName):
-    return HttpResponse("Welcome %s to the database." % userName)
+def spells(request):
+    print("Rendered spells")
+    return render(request, "DDChar/spells.html")
 
-def listUsers(request):
-    user_list = User.objects.all()
-    if len(user_list) > 1:
-        return render(request, 'DDChar/userAll.html', {'user': user_list})
-    else:
-        return HttpResponse("No users.")
-
-def getCharacter(request, charName, charRace, charLevel):
-    response = "Your character stats are as follows: /n Name: %s /n Race: %s /n Level %s"
-    return HttpResponse(response % charName, charRace, charLevel)
