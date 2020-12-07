@@ -43,7 +43,23 @@
                                 <label>Die</label>
                                 <input id="die" type="text" class="form-control" placeholder="Die" name="sp_die" value="{{ sp_die }}">
                             </div>
-                            <button class="btn btn-secondary" type="submit">Create</button>
+                            <button class="btn btn-secondary" type="submit" name='createbtn'>Create</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <h1>Delete a Spell</h1>
+                        <form method="POST" action="/spells/">
+                            {% csrf_token %}
+                            {{ form }}
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input id="name" type="text" class="form-control" placeholder="Name" name="sp_name" value="{{ sp_name }}">
+                            </div>
+                            <button class="btn btn-secondary" type="submit" name='deletebtn'>Delete</button>
                         </form>
                     </div>
                 </div>

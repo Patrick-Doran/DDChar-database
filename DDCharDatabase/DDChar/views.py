@@ -17,9 +17,17 @@ def index(request):
 def spells(request):
     print("Rendered spells")
     if request.method == "POST":
-        form = spellForm(request.POST or None)
-        if form.is_valid():
-            form.save()
+        if 'createbtn' in request.POST:
+            print("POST Success")
+            form = spellForm(request.POST or None)
+            if form.is_valid():
+                print("SAVE")
+                form.save()
+        if 'deletebtn' in request.POST:
+            condition = request.POST['sp_name']
+            if Spell.objects.filter(sp_name = condition).exists():
+                entry = Spell.objects.get(sp_name = condition)
+                entry.delete()
     all_spells = Spell.objects.raw('''
         SELECT *
         FROM spell
