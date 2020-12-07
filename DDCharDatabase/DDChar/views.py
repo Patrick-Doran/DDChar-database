@@ -19,9 +19,9 @@ def spells(request):
     if request.method == "POST":
         print("POST Success")
         form = spellForm(request.POST or None)
-        #if form.is_valid():
-        print("SAVE")
-        form.save()
+        if form.is_valid():
+            print("SAVE")
+            form.save()
     all_spells = Spell.objects.raw('''
         SELECT *
         FROM spell
