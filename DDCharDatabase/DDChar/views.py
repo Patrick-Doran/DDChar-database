@@ -16,17 +16,24 @@ def index(request):
 
 def spells(request):
     print("Rendered spells")
+    if request.method == "POST":
+        print("POST Success")
+        form = spellForm(request.POST or None)
+        if form.is_valid():
+            print("SAVE")
+            form.save()
     all_spells = Spell.objects.raw('''
         SELECT *
         FROM spell
         GROUP BY sp_name
     ''')
-    print("HERE")
+    print("BEFORE RNDER")
     return render(request, "DDChar/spells.html", {'allSpell':all_spells})
 
 def createSpell(request):
     if request.method == "POST":
-        form = spellForm(request.post or None)
+        print("POST success")
+        form = spellForm(request.POST or None)
         if form.is_valid():
             form.save()
         return render(request, "DDChar/spells.html", {})
