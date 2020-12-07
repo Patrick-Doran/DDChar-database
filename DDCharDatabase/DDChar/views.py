@@ -28,3 +28,6 @@ def spells(request):
     print("BEFORE RNDER")
     return render(request, "DDChar/spells.html", {'allSpell':all_spells})
 
+def createChar(request):
+    return render(request, "DDChar/createChar.html", {})
+
