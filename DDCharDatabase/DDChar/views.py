@@ -29,8 +29,7 @@ def createSpell(request):
         form = spellForm(request.post or None)
         if form.is_valid():
             form.save()
-            print("SAVED!")
-            return render(request, "DDChar/spells.html", {})
+        return render(request, "DDChar/spells.html", {})
     else:
         return render(request, "DDChar/spells.html")
 

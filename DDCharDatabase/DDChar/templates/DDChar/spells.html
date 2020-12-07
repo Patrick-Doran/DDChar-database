@@ -10,8 +10,8 @@
     </head>
     <body>
         <div class="topnav">
-            <a href=" ">Character</a>
-            <a class="active" href="spells/">Spells</a>
+            <a href="/">Character</a>
+            <a class="active" href="/spells">Spells</a>
         </div>
         <div>
             <div class="container-fluid">
@@ -29,17 +29,17 @@
                             {% csrf_token %}
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control" placeholder="Name">
+                                <input type="text" class="form-control" placeholder="Name" name="sp_name">
                                 <label>Slot Level</label>
-                                <input type="number" class="form-control" placeholder="Slot Level">
+                                <input type="number" class="form-control" placeholder="Slot Level" name="sp_slotLevel">
                                 <label>Range</label>
-                                <input type="number" class="form-control" placeholder="Range">
+                                <input type="number" class="form-control" placeholder="Range" name="sp_range">
                                 <label>Casting Type</label>
-                                <input type="text" class="form-control" placeholder="Type">
+                                <input type="text" class="form-control" placeholder="Type" name="sp_castingtype">
                                 <label>Effect</label>
-                                <input type="text" class="form-control" placeholder="Effect">
+                                <input type="text" class="form-control" placeholder="Effect" name="sp_effect">
                                 <label>Die</label>
-                                <input type="text" class="form-control" placeholder="Die">
+                                <input type="text" class="form-control" placeholder="Die" name="sp_die">
                             </div>
                             <button class="btn btn-secondary" type="submit">Create</button>
                         </form>
