@@ -9,7 +9,7 @@ from django.db import models
 
 
 class Background(models.Model):
-    bg_name = models.CharField(max_length=20)
+    bg_name = models.CharField(max_length=20, primary_key = True)
     bg_race = models.CharField(max_length=15)
     bg_age = models.IntegerField(default=0)
     bg_alignment = models.CharField(max_length=20)
@@ -23,7 +23,7 @@ class Background(models.Model):
 
 class Class(models.Model):
     cl_id = models.IntegerField(default=0)
-    cl_name = models.CharField(max_length=15)
+    cl_name = models.CharField(max_length=15, primary_key = True)
 
     def __str__(self):
         return self.cl_name
@@ -57,7 +57,7 @@ class Classweapon(models.Model):
 
 
 class Playercharacter(models.Model):
-    pc_name = models.CharField(max_length=20)
+    pc_name = models.CharField(max_length=20, primary_key = True)
     pc_key = models.IntegerField(default=0)
     pc_class = models.IntegerField(default=0)
     pc_level = models.IntegerField(default=0)
@@ -97,7 +97,7 @@ class User(models.Model):
 
 
 class Weapon(models.Model):
-    wpn_name = models.CharField(max_length=25)
+    wpn_name = models.CharField(max_length=25, primary_key = True)
     wpn_range = models.IntegerField(default=0)
     wpn_damage = models.IntegerField(default=0)
 
