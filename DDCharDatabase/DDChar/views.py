@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import * #VSCode hates this, I don't know why, it just does
 from django.db import connection
+from .forms import *
 
 # Create your views here.
 def index(request):
@@ -20,5 +21,16 @@ def spells(request):
         FROM spell
         GROUP BY sp_name
     ''')
+    print("HERE")
     return render(request, "DDChar/spells.html", {'allSpell':all_spells})
+
+def createSpell(request):
+    if request.method == "POST":
+        form = spellForm(request.post or None)
+        if form.is_valid():
+            form.save()
+            print("SAVED!")
+            return spells(request)
+    else:
+        return render(request, "DDChar/spells.html")
 
