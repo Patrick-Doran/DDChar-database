@@ -13,5 +13,21 @@
             <a href=" ">Character</a>
             <a class="active" href="spells/">Spells</a>
         </div>
+        <div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <h1>Spell Catalog</h1>
+                        {% for spellList in allSpell %}
+                        <p>{{ spellList.sp_name}} | {{spellList.sp_slotLevel}} | {{spellList.sp_range}} | {{spellList.sp_castingtype}} |
+                            {{spellList.sp_effect}} | {{spellList.sp_die}}</p>
+                        {% endfor %}
+                    </div>
+                    <div class="col-sm-7">
+                        <h1>Create a Spell</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>

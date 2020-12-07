@@ -7,10 +7,18 @@ from django.db import connection
 # Create your views here.
 def index(request):
     print("Rendered index")
-    all_members = User.objects.all
+    all_members = User.objects.raw('''
+        SELECT *
+        FROM user
+    ''')
     return render(request, "DDChar/index.html", {'all':all_members}) #Pass all to html via dictionary
 
 def spells(request):
     print("Rendered spells")
-    return render(request, "DDChar/spells.html")
+    all_spells = Spell.objects.raw('''
+        SELECT *
+        FROM spell
+        GROUP BY sp_name
+    ''')
+    return render(request, "DDChar/spells.html", {'allSpell':all_spells})
 
