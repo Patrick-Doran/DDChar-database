@@ -30,13 +30,3 @@ def spells(request):
     print("BEFORE RNDER")
     return render(request, "DDChar/spells.html", {'allSpell':all_spells})
 
-def createSpell(request):
-    if request.method == "POST":
-        print("POST success")
-        form = spellForm(request.POST or None)
-        if form.is_valid():
-            form.save()
-        return render(request, "DDChar/spells.html", {})
-    else:
-        return render(request, "DDChar/spells.html")
-
