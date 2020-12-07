@@ -30,7 +30,7 @@ def createSpell(request):
         if form.is_valid():
             form.save()
             print("SAVED!")
-            return spells(request)
+            return render(request, "DDChar/spells.html", {})
     else:
         return render(request, "DDChar/spells.html")
 
