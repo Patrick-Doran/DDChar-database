@@ -43,10 +43,10 @@ def createChar(request):
         form = charForm(request.POST)
         if form.is_valid:
             u_name = request.POST['u_name']
-            u_key = User.objects.filter(u_name=u_name)
+            u_key = User.objects.filter(u_name=u_name).values('u_key')
             pc_name = request.POST['pc_name']
             pc_class = request.POST['pc_class']
-            cl_id = Class.objects.filter(cl_name=pc_class)
+            cl_id = Class.objects.filter(cl_name=pc_class).values('cl_id')
             pc_level = request.POST['pc_level']
             bg_race = request.POST['bg_race']
             bg_age = request.POST['bg_age']
