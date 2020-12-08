@@ -37,5 +37,20 @@ def spells(request):
     return render(request, "DDChar/spells.html", {'allSpell':all_spells})
 
 def createChar(request):
+    if request.method == "POST":
+        form = charForm(request.POST)
+        if form.is_valid:
+            u_name = request.POST['u_name']
+            u_key = User.objects.get(u_name=u_name)
+            pc_name = request.POST['pc_name']
+            pc_class = request.POST['pc_class']
+            pc_level = request.POST['pc_level']
+            bg_race = request.POST['bg_race']
+            bg_age = request.POST['bg_age']
+            bg_alignment = request.POST['bg_alignment']
+            user_object = User(u_key=u_key, u_name=u_name)
+            #TODO
+
+            
     return render(request, "DDChar/createChar.html", {})
 
