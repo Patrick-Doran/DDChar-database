@@ -17,8 +17,25 @@
         <div>
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-sm-12">
+                        <form method="POST" action="/spells/">
+                            {% csrf_token %}
+                            {{ form }}
+                            <div class="form-group">
+                                <label>Search</label>
+                                <input id="search" type="text" class="form-control" placeholder="Enter a spell name" name="search" value="{{ search }}">
+                                <button class="btn btn-secondary" type="submit" name="searchbtn">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-sm-5">
                         <h1>Spell Catalog</h1>
+                        {% for spell in singleSpell %}
+                        <p>{{ spell.sp_name}} | {{spell.sp_slotLevel}} | {{spell.sp_range}} | {{spell.sp_castingtype}} |
+                            {{spell.sp_effect}} | {{spell.sp_die}}</p>
+                        {% endfor %}
                         {% for spellList in allSpell %}
                         <p>{{ spellList.sp_name}} | {{spellList.sp_slotLevel}} | {{spellList.sp_range}} | {{spellList.sp_castingtype}} |
                             {{spellList.sp_effect}} | {{spellList.sp_die}}</p>

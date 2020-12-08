@@ -17,7 +17,6 @@ def index(request):
     return render(request, "DDChar/index.html", {'all':all_members}) #Pass all to html via dictionary
 
 def spells(request):
-    print("Rendered spells")
     if request.method == "POST":
         if 'createbtn' in request.POST:
             print("POST Success")
@@ -30,12 +29,19 @@ def spells(request):
             if Spell.objects.filter(sp_name = condition).exists():
                 entry = Spell.objects.get(sp_name = condition)
                 entry.delete()
+        if 'searchbtn' in request.POST:
+            searchRes = request.POST['search']
+            print(searchRes)
+            if Spell.objects.filter(sp_name=searchRes).exists():
+                searchQuery = Spell.objects.filter(sp_name=searchRes)
+                print(searchQuery)
+                return render(request, "DDChar/spells.html", {'singleSpell':searchQuery})
     all_spells = Spell.objects.raw('''
         SELECT *
         FROM spell
         GROUP BY sp_name
     ''')
-    print("BEFORE RNDER")
+    print(all_spells)
     return render(request, "DDChar/spells.html", {'allSpell':all_spells})
 
 def createChar(request):
