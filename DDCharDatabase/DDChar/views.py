@@ -24,24 +24,16 @@ def spells(request):
             thelist = []
             for classid in theclasses.split(' '):
                 print(classid)
-                if classid.lower() == "barbarian" :
-                    thelist.append(0)
                 if classid.lower() == "bard":
                     thelist.append(1)
                 if classid.lower() == "cleric":
                     thelist.append(2)
                 if classid.lower() == "druid":
                     thelist.append(3)
-                if classid.lower() == "fighter":
-                    thelist.append(4)
-                if classid.lower() == "monk":
-                    thelist.append(5)
                 if classid.lower() == "paladin":
                     thelist.append(6)
                 if classid.lower() == "ranger":
                     thelist.append(7)
-                if classid.lower() == "rogue":
-                    thelist.append(8)
                 if classid.lower() == "sorcerer":
                     thelist.append(9)
                 if classid.lower() == "warlock":
