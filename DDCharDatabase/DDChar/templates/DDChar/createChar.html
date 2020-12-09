@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="{% static 'DDChar/createChar.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <title>DDChar</title>
+    </head>
+    <body>
+        <div class="topnav">
+            <a  href="/">Character</a>
+            <a href="/spells">Spells</a>
+            <a href="/createChar" class="active">Create Character</a>
+        </div>
+        <div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h1>Create your Character</h1>
+                        <form method="POST" action="/createChar/"> <!--Double check action=-->
+                            {% csrf_token %}
+                            {{ form }}
+                            <div class="form-group">
+                                <label>Player Name</label>
+                                <input type="text" class="form-control" placeholder="" name="u_name" value="{{ u_name }}">
+                                <label>Character Name</label>
+                                <input type="text" class="form-control" placeholder="" name="pc_name" value="{{ pc_name }}">
+                                <label>Class</label>
+                                <input type="text" class="form-control" placeholder="e.g. rogue, paldin" name="pc_class" value="{{ pc_class }}">
+                                <label>Level</label>
+                                <input type="number" class="form-control" placeholder="" name="pc_level" value="{{ pc_level }}">
+                                <label>Race</label>
+                                <input type="text" class="form-control" placeholder="e.g. ORC, HUMAN" name="bg_race" value="{{ bg_race }}">
+                                <label>Age</label>
+                                <input type="text" class="form-control" placeholder="" name="bg_age" value="{{ bg_age }}">
+                                <label>Alignment</label>
+                                <input type="text" class="form-control" placeholder="e.g. Lawful Good, Chaotic Evil" name="bg_alignment" value="{{ bg_alignment }}">
+                            </div>
+                            <button class="btn btn-secondary" type="submit">Create</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
