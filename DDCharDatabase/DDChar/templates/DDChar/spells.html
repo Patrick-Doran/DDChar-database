@@ -41,10 +41,12 @@
                                 <input id="effect" type="text" class="form-control" placeholder="Effect" name="sp_effect" value="{{ sp_effect }}">
                                 <label>Die</label>
                                 <input id="die" type="text" class="form-control" placeholder="Die" name="sp_die" value="{{ sp_die }}">
+                                <label>Classes</label>
+                                <input id="classes" type="text" class="form-control" placeholder="classes" name="classnames">
                             </div>
                             <button class="btn btn-secondary" type="submit" name='createbtn'>Create</button>
                         </form>
-                        <h1>Delete a Spell</h1>
+                        <h2>Delete a Spell</h2>
                         <form method="POST" action="/spells/">
                             {% csrf_token %}
                             {{ form }}

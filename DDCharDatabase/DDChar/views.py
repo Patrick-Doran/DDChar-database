@@ -20,7 +20,61 @@ def spells(request):
         if 'createbtn' in request.POST:
             print("POST Success")
             form = spellForm(request.POST or None)
+            theclasses = request.POST["classnames"]
+            thelist = []
+            for classid in theclasses.split(' '):
+                print(classid)
+                if classid.lower() == "barbarian" :
+                    thelist.append(0)
+                if classid.lower() == "bard":
+                    thelist.append(1)
+                if classid.lower() == "cleric":
+                    thelist.append(2)
+                if classid.lower() == "druid":
+                    thelist.append(3)
+                if classid.lower() == "fighter":
+                    thelist.append(4)
+                if classid.lower() == "monk":
+                    thelist.append(5)
+                if classid.lower() == "paladin":
+                    thelist.append(6)
+                if classid.lower() == "ranger":
+                    thelist.append(7)
+                if classid.lower() == "rogue":
+                    thelist.append(8)
+                if classid.lower() == "sorcerer":
+                    thelist.append(9)
+                if classid.lower() == "warlock":
+                    thelist.append(10)
+                if classid.lower() == "wizard":
+                    thelist.append(11)
             if form.is_valid():
+                for x in range(len(thelist)):
+                    print(thelist[x])
+                    if thelist[x] == 1:
+                        caster = Classspell(clsp_ability="CHR", clsp_id=thelist[x], clsp_name=request.POST["sp_name"])
+                        caster.save()
+                    if thelist[x] == 2:
+                        caster = Classspell(clsp_ability="WIS", clsp_id=thelist[x], clsp_name=request.POST["sp_name"])
+                        caster.save()
+                    if thelist[x] == 3:
+                        caster = Classspell(clsp_ability="WIS", clsp_id=thelist[x], clsp_name=request.POST["sp_name"])
+                        caster.save()
+                    if thelist[x] == 6:
+                        caster = Classspell(clsp_ability="CHR", clsp_id=thelist[x], clsp_name=request.POST["sp_name"])
+                        caster.save()
+                    if thelist[x] == 7:
+                        caster = Classspell(clsp_ability="WIS", clsp_id=thelist[x], clsp_name=request.POST["sp_name"])
+                        caster.save()
+                    if thelist[x] == 9:
+                        caster = Classspell(clsp_ability="CHR", clsp_id=thelist[x], clsp_name=request.POST["sp_name"])
+                        caster.save()
+                    if thelist[x] == 10:
+                        caster = Classspell(clsp_ability="CHR", clsp_id=thelist[x], clsp_name=request.POST["sp_name"])
+                        caster.save()
+                    if thelist[x] == 11:
+                        caster = Classspell(clsp_ability="INT", clsp_id=thelist[x], clsp_name=request.POST["sp_name"])
+                        caster.save()
                 print("SAVE")
                 form.save()
         if 'deletebtn' in request.POST:
@@ -28,6 +82,7 @@ def spells(request):
             if Spell.objects.filter(sp_name = condition).exists():
                 entry = Spell.objects.get(sp_name = condition)
                 entry.delete()
+                Classspell.objects.filter(clsp_name = condition).delete()
     all_spells = Spell.objects.raw('''
         SELECT *
         FROM spell
