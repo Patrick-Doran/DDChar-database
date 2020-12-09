@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import * #VSCode hates this, I don't know why, it just does
 from django.db import connection
+from django.db.models import Q
 from .forms import *
 
 # Create your views here.
@@ -32,8 +33,8 @@ def spells(request):
         if 'searchbtn' in request.POST:
             searchRes = request.POST['search']
             print(searchRes)
-            if Spell.objects.filter(sp_name=searchRes).exists():
-                searchQuery = Spell.objects.filter(sp_name=searchRes)
+            if Spell.objects.filter(Q(sp_name__startswith=searchRes) | Q(sp_range__startswith=searchRes) | Q(sp_castingtype__startswith=searchRes) | Q(sp_effect__startswith=searchRes) | Q(sp_die__startswith=searchRes)).exists():
+                searchQuery = Spell.objects.filter(Q(sp_name__startswith=searchRes) | Q(sp_range__startswith=searchRes) | Q(sp_castingtype__startswith=searchRes) | Q(sp_effect__startswith=searchRes) | Q(sp_die__startswith=searchRes))
                 print(searchQuery)
                 return render(request, "DDChar/spells.html", {'singleSpell':searchQuery})
     all_spells = Spell.objects.raw('''
