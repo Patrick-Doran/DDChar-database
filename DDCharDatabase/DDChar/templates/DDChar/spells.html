@@ -60,7 +60,7 @@
                                 <label>Die</label>
                                 <input id="die" type="text" class="form-control" placeholder="Die" name="sp_die" value="{{ sp_die }}">
                                 <label>List the Classes That Can Cast This Spell</label>
-                                <input id="classes" type="text" class="form-control" placeholder="ex: Bard Ranger Druid Paladin" name="classnames">
+                                <input id="classes" type="text" class="form-control" placeholder="e.g. bard, paladin, rogue" name="classnames">
                             </div>
                             <button class="btn btn-secondary" type="submit" name='createbtn'>Create</button>
                         </form>
@@ -79,6 +79,18 @@
                                 <input id="name" type="text" class="form-control" placeholder="Name" name="sp_name" value="{{ sp_name }}">
                             </div>
                             <button class="btn btn-secondary" type="submit" name='deletebtn'>Delete</button>
+                        </form>
+                    </div>
+                    <div class="col-sm-5">
+                        <h1>Edit a Spell</h1>
+                        <form method="POST" action="/edit/">
+                            {% csrf_token %}
+                            {{ form }}
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input id="name" type="text" class="form-control" placeholder="" name="sp_name" value="{{ sp_name }}">
+                            </div>
+                            <button class="btn btn-secondary" type="submit" name="editbtn">Edit</button>
                         </form>
                     </div>
                 </div>

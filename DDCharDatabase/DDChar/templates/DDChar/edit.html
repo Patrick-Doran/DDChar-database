@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="{% static 'DDChar/index.css' %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <title>DDChar</title>
+    </head>
+    <body>
+        <div class="topnav">
+            <a href=" ">Character</a>
+            <a href="spells/">Spells</a>
+            <a href="createChar/">Create Character</a>
+        </div>
+        <div>
+            <h1>Edit {{ spellName }}</h1>
+            <form method="POST" action="/edit/">
+                {% csrf_token %}
+                {{ form }}
+                <div class="form-group">
+                    <label>Name</label>
+                    <input id="name" type="text" class="form-control" name="sp_name" value="{{ sp_name }}">
+                    <label>Slot Level</label>
+                    <input id="slotLevel" type="number" class="form-control" name="sp_slotlevel" value="{{ sp_slotlevel }}">
+                    <label>Range</label>
+                    <input id="range" type="number" class="form-control" name="sp_range" value="{{ sp_range }}">
+                    <label>Casting Type</label>
+                    <input id="castingType" type="text" class="form-control" name="sp_castingtype" value="{{ sp_castingtype }}">
+                    <label>Effect</label>
+                    <input id="effect" type="text" class="form-control" name="sp_effect" value="{{ sp_effect }}">
+                    <label>Die</label>
+                    <input id="die" type="text" class="form-control" name="sp_die" value="{{ sp_die }}">
+                </div>
+                <button class="btn btn-secondary" type="submit" name='editsubbtn'>Edit</button>
+            </form>
+        </div>
+    </body>
+</html>

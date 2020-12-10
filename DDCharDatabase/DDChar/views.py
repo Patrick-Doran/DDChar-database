@@ -95,7 +95,7 @@ def spells(request):
 def createChar(request):
     if request.method == "POST":
         form = charForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             u_name = request.POST['u_name']
             u_key = User.objects.filter(u_name=u_name).values('u_key')
             pc_name = request.POST['pc_name']
@@ -110,8 +110,33 @@ def createChar(request):
             bg_object = Background(bg_name=pc_name, bg_race=bg_race, bg_age=bg_age, bg_alignment=bg_alignment)
 
             pc_object.save()
-            bg_object.save()
-
-            
+            bg_object.save()  
     return render(request, "DDChar/createChar.html", {})
+
+def edit(request):
+    if request.method == "POST":
+        if 'editbtn' in request.POST:
+            sp_name = request.POST['sp_name']
+            spellEdit = Spell.objects.filter(sp_name=sp_name)
+            sp_slotlevel = spellEdit.values('sp_slotlevel')
+            sp_range = spellEdit.values('sp_range')
+            sp_castingtype = spellEdit.values('sp_castingtype')
+            sp_effect = Spell.objects.filter(sp_name=sp_name).values('sp_effect')
+            sp_die = spellEdit.values('sp_die')
+            return render(request, "DDChar/edit.html", {
+                'sp_name':sp_name,
+                'sp_slotlevel':sp_slotlevel,
+                'sp_range':sp_range,
+                'sp_castingtype':sp_castingtype,
+                'sp_effect':sp_effect,
+                'sp_die':sp_die,
+            })
+        if 'editsubbtn' in request.POST:
+            print("EDIT BUTTON")
+            form = spellForm(request.POST or None)
+            if form.is_valid():
+                print("IS VALID")
+                form.save()
+                return render(request, "DDChar/spells.html", {})
+    return render(request, "DDChar/spells.html", {})
 

@@ -17,8 +17,8 @@
         <div>
             <h1>User list</h1>
             <!--craetes variable userbase that goes through the variable all(established in views.py)-->
-            {% for userbase in all %} 
-            <p>{{ userbase.u_name }}</p>
+            {% for list in all %} 
+            <p>{{list.u_name}}  {{list.pc_name}} {{list.pc_key}} {{list.pc_class}} {{list.pc_level}} {{list.bg_name}} {{list.bg_race}} {{list.bg_age}} {{list.bg_alignment}}</p>
             {% endfor %}
         </div>
     </body>

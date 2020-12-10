@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <h1>Create your Character</h1>
-                        <form method="POST" action="/createChar/"> <!--Double check action=-->
+                        <form method="POST" action="/createChar/">
                             {% csrf_token %}
                             {{ form }}
                             <div class="form-group">
