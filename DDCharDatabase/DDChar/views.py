@@ -9,13 +9,40 @@ from .forms import *
 # Create your views here.
 def index(request):
     print("Rendered index")
-    all_members = User.objects.raw('''
-        SELECT u_key, u_name, pc_name, pc_key, pc_class, pc_level, bg_name, bg_race, bg_age, bg_alignment
-        FROM user, playerCharacter, background
-        WHERE u_key = pc_key AND pc_name = bg_name
-        GROUP BY u_name
+
+    all_characters = Playercharacter.objects.raw('''
+        SELECT pc_name FROM playerCharacter
     ''')
-    return render(request, "DDChar/index.html", {'all':all_members}) #Pass all to html via dictionary
+
+    if request.method == "POST":
+        character = request.POST["character"]
+        attribute = request.POST["attribute"]
+        character_info = User.objects.raw('''
+        SELECT u_key, u_name, pc_name, pc_key, pc_class, pc_level, bg_race, bg_age, bg_alignment, cl_name
+        FROM user, playerCharacter, background, Class
+        WHERE u_key = pc_key AND cl_id = pc_class AND pc_name = bg_name AND pc_name = %s
+        GROUP BY u_name;
+        ''', [character])
+        if attribute == 'weapons':
+            wpn_attribute_info = Weapon.objects.raw('''
+            SELECT wpn_name, wpn_range, wpn_damage, clwpn_prof FROM Weapon, classWeapon
+            INNER JOIN playerCharacter ON pc_class = clwpn_id
+            WHERE wpn_name = clwpn_name AND pc_name = %s
+            ''', [character])
+            return render(request, "DDChar/index.html", {'character_info':character_info,'wpn_attribute_info':wpn_attribute_info, 'all_char':all_characters})
+        elif attribute == 'spells':
+            sp_attribute_info = Spell.objects.raw('''
+            SELECT sp_name, sp_slotlevel, sp_range, sp_castingtype, sp_effect, sp_die FROM Spell
+            INNER JOIN ClassSpell ON ClassSpell.clsp_name = Spell.sp_name
+            INNER JOIN Class ON Class.cl_id = ClassSpell.clsp_id
+            INNER JOIN playerCharacter ON playerCharacter.pc_class = Class.cl_id
+            WHERE pc_name = %s AND sp_slotLevel <= pc_level
+            GROUP BY sp_name;
+            ''', [character])
+            print(sp_attribute_info)
+            return render(request, "DDChar/index.html", {'character_info':character_info, 'sp_attribute_info':sp_attribute_info, 'all_char':all_characters})
+
+    return render(request, "DDChar/index.html", {'all_char':all_characters}) #Pass all to html via dictionary
 
 def spells(request):
     if request.method == "POST":
