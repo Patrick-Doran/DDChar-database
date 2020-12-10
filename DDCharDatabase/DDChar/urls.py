@@ -7,4 +7,5 @@ urlpatterns = [
     #url for spell
     path('spells/', views.spells, name='spells'),
     path('createChar/', views.createChar, name='createChar'),
+    path('edit/', views.edit, name='edit'),
 ]

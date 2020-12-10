@@ -71,7 +71,7 @@ class Playercharacter(models.Model):
 
 class Spell(models.Model):
     sp_name = models.CharField(max_length=25, primary_key = True)
-    sp_slotlevel = models.IntegerField(default=0)
+    sp_slotlevel = models.IntegerField(default=1)
     sp_range = models.IntegerField(default=0) 
     sp_castingtype = models.CharField(max_length=25)
     sp_effect = models.CharField(max_length=25)
