@@ -39,7 +39,6 @@ def index(request):
             WHERE pc_name = %s AND sp_slotLevel <= pc_level
             GROUP BY sp_name;
             ''', [character])
-            print(sp_attribute_info)
             return render(request, "DDChar/index.html", {'character_info':character_info, 'sp_attribute_info':sp_attribute_info, 'all_char':all_characters})
 
     return render(request, "DDChar/index.html", {'all_char':all_characters}) #Pass all to html via dictionary

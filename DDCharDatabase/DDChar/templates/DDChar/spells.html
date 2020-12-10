@@ -30,18 +30,40 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-5">
+                    <div class="col-sm-8">
                         <h1>Spell Catalog</h1>
+                        <table style="width:1000px">
+                            <tr>
+                                <th>Spell</th>
+                                <th>Slot Level</th>
+                                <th>Spell Range(ft)</th>
+                                <th>Cast Time</th>
+                                <th>Spell Type</th>
+                                <th>Roll</th>
+                            </tr>
                         {% for spell in singleSpell %}
-                        <p>{{ spell.sp_name}} | {{spell.sp_slotLevel}} | {{spell.sp_range}} | {{spell.sp_castingtype}} |
-                            {{spell.sp_effect}} | {{spell.sp_die}}</p>
+                        <tr>
+                            <td>{{spell.sp_name}}</td>
+                            <td>{{spell.sp_slotlevel}}</td>
+                            <td>{{spell.sp_range}}</td>
+                            <td>{{spell.sp_castingtype}}</td>
+                            <td>{{spell.sp_effect}}</td>
+                            <td>{{spell.sp_die}}</td>
+                        </tr>
                         {% endfor %}
                         {% for spellList in allSpell %}
-                        <p>{{ spellList.sp_name}} | {{spellList.sp_slotLevel}} | {{spellList.sp_range}} | {{spellList.sp_castingtype}} |
-                            {{spellList.sp_effect}} | {{spellList.sp_die}}</p>
+                        <tr>
+                            <td>{{spellList.sp_name}}</td>
+                            <td>{{spellList.sp_slotLevel}}</td>
+                            <td>{{spellList.sp_range}}</td>
+                            <td>{{spellList.sp_castingtype}}</td>
+                            <td>{{spellList.sp_effect}}</td>
+                            <td>{{spellList.sp_die}}</td>
+                        </tr>
                         {% endfor %}
+                        </table>
                     </div>
-                    <div class="col-sm-7">
+                    <div class="col-sm-4">
                         <h1>Create a Spell</h1>
                         <form method="POST" action="/spells/">
                             {% csrf_token %}
@@ -64,6 +86,7 @@
                             </div>
                             <button class="btn btn-secondary" type="submit" name='createbtn'>Create</button>
                         </form>
+                        <br>
                         <h2>Delete a Spell</h2>
                         <form method="POST" action="/spells/">
                             {% csrf_token %}
