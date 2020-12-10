@@ -10,15 +10,103 @@
     </head>
     <body>
         <div class="topnav">
-            <a class="active" href=" ">Character</a>
+            <a class="active" href="/">Character</a>
             <a href="spells/">Spells</a>
+            <a href="createChar/">Create Character</a>
         </div>
         <div>
-            <h1>User list</h1>
-            <!--craetes variable userbase that goes through the variable all(established in views.py)-->
-            {% for userbase in all %} 
-            <p>{{ userbase.u_name }}</p>
-            {% endfor %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>Display Character</h1>
+                    <form method="POST" action="/">
+                        {% csrf_token %}
+                        {{ form }}
+                        <div class="form-group">
+                            <label for "character">Select a Character:</label>
+                            <select name="character" id="character">
+                                {% for charbase in all_char %}
+                                <option value="{{charbase.pc_name}}">{{charbase.pc_name}}</option>
+                                {% endfor %}
+                            </select>
+                            <label for "attribute">Select an attribute:</label>
+                            <select name="attribute" id="attribute">
+                                <option value="weapons">Weapons</option>
+                                <option value="spells">Spells</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-secondary" type="submit">View</button>
+                    </form>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    {% for cinfo in character_info %}
+                    <p>
+                    User: {{cinfo.u_name}} <br>
+                    Class: {{cinfo.cl_name}} <br>
+                    Character Level: {{cinfo.pc_level}}
+                    </p>
+                    {% endfor %}
+                </div>
+                <div class="col-sm-6">
+                    {% for cinfo in character_info %}
+                    <p>Character Race: {{cinfo.bg_race}} <br>
+                    Character Age: {{cinfo.bg_age}} <br>
+                    Character Alignment: {{cinfo.bg_alignment}}
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                {% if wpn_attribute_info %}
+                    <table style="width:2000px">
+                        <tr>
+                            <th>Weapon</th>
+                            <th>Weapon Range (ft)</th>
+                            <th>Weapon Damage</th>
+                            <th>Is the Character Proficient?</th>
+                        </tr>
+                        {% for winfo in wpn_attribute_info %}
+                        <tr>
+                            <td>{{winfo.wpn_name}}</td>
+                            <td>{{winfo.wpn_range}}</td>
+                            <td>{{winfo.wpn_damage}}</td>
+                            <td>{{winfo.clwpn_prof}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    {%if sp_attribute_info %}
+                        <table style="width:1500px">
+                            <tr>
+                                <th>Spell</th>
+                                <th>Spell Slot Level</th>
+                                <th>Spell Range (ft)</th>
+                                <th>Spell Cast Time</th>
+                                <th>Spell Type</th>
+                                <th>What is Rolled?</th>
+                            </tr>
+                            {% for spinfo in sp_attribute_info %}
+                            <tr>
+                                <td>{{spinfo.sp_name}}</td>
+                                <td>{{spinfo.sp_slotLevel}}</td>
+                                <td>{{spinfo.sp_range}}</td>
+                                <td>{{spinfo.sp_castingtype}}</td>
+                                <td>{{spinfo.sp_effect}}</td>
+                                <td>{{spinfo.sp_die}}</td>
+                            <tr>
+                            {% endfor %}
+                        </table>
+                    {%endif%}
+                </div>
+            </div>
         </div>
     </body>
 </html>

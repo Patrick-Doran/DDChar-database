@@ -10,38 +10,103 @@
     </head>
     <body>
         <div class="topnav">
-            <a href=" ">Character</a>
-            <a class="active" href="spells/">Spells</a>
+            <a href="/">Character</a>
+            <a class="active" href="/spells">Spells</a>
+            <a href="/createChar">Create Character</a>
         </div>
         <div>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-sm-5">
-                        <h1>Spell Catalog</h1>
-                        {% for spellList in allSpell %}
-                        <p>{{ spellList.sp_name}} | {{spellList.sp_slotLevel}} | {{spellList.sp_range}} | {{spellList.sp_castingtype}} |
-                            {{spellList.sp_effect}} | {{spellList.sp_die}}</p>
-                        {% endfor %}
-                    </div>
-                    <div class="col-sm-7">
-                        <h1>Create a Spell</h1>
-                        <form method="POST" action="{% url 'spells' %}">
+                    <div class="col-sm-12">
+                        <form method="POST" action="/spells/">
                             {% csrf_token %}
+                            {{ form }}
+                            <div class="form-group">
+                                <label>Search</label>
+                                <input id="search" type="text" class="form-control" placeholder="" name="search" value="{{ search }}">
+                                <button class="btn btn-secondary" type="submit" name="searchbtn">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <h1>Spell Catalog</h1>
+                        <table style="width:1000px">
+                            <tr>
+                                <th>Spell</th>
+                                <th>Slot Level</th>
+                                <th>Spell Range(ft)</th>
+                                <th>Cast Time</th>
+                                <th>Spell Type</th>
+                                <th>Roll</th>
+                            </tr>
+                        {% for spell in singleSpell %}
+                        <tr>
+                            <td>{{spell.sp_name}}</td>
+                            <td>{{spell.sp_slotlevel}}</td>
+                            <td>{{spell.sp_range}}</td>
+                            <td>{{spell.sp_castingtype}}</td>
+                            <td>{{spell.sp_effect}}</td>
+                            <td>{{spell.sp_die}}</td>
+                        </tr>
+                        {% endfor %}
+                        {% for spellList in allSpell %}
+                        <tr>
+                            <td>{{spellList.sp_name}}</td>
+                            <td>{{spellList.sp_slotLevel}}</td>
+                            <td>{{spellList.sp_range}}</td>
+                            <td>{{spellList.sp_castingtype}}</td>
+                            <td>{{spellList.sp_effect}}</td>
+                            <td>{{spellList.sp_die}}</td>
+                        </tr>
+                        {% endfor %}
+                        </table>
+                    </div>
+                    <div class="col-sm-4">
+                        <h1>Create a Spell</h1>
+                        <form method="POST" action="/spells/">
+                            {% csrf_token %}
+                            {{ form }}
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control" placeholder="Name">
+                                <input id="name" type="text" class="form-control" placeholder="Name" name="sp_name" value="{{ sp_name }}">
                                 <label>Slot Level</label>
-                                <input type="number" class="form-control" placeholder="Slot Level">
+                                <input id="slotLevel" type="number" class="form-control" placeholder="Slot Level" name="sp_slotlevel" value="{{ sp_slotlevel }}">
                                 <label>Range</label>
-                                <input type="number" class="form-control" placeholder="Range">
+                                <input id="range" type="number" class="form-control" placeholder="Range" name="sp_range" value="{{ sp_range }}">
                                 <label>Casting Type</label>
-                                <input type="text" class="form-control" placeholder="Type">
+                                <input id="castingType" type="text" class="form-control" placeholder="Type" name="sp_castingtype" value="{{ sp_castingtype }}">
                                 <label>Effect</label>
-                                <input type="text" class="form-control" placeholder="Effect">
+                                <input id="effect" type="text" class="form-control" placeholder="Effect" name="sp_effect" value="{{ sp_effect }}">
                                 <label>Die</label>
-                                <input type="text" class="form-control" placeholder="Die">
+                                <input id="die" type="text" class="form-control" placeholder="Die" name="sp_die" value="{{ sp_die }}">
+                                <label>List the Classes That Can Cast This Spell</label>
+                                <input id="classes" type="text" class="form-control" placeholder="e.g. bard, paladin, rogue" name="classnames">
                             </div>
-                            <button class="btn btn-secondary" type="submit">Create</button>
+                            <button class="btn btn-secondary" type="submit" name='createbtn'>Create</button>
+                            <button class="btn bnt-secondary" type="submit" name="editeBTN">Edit</button>
+                        </form>
+                        <br>
+                        <h2>Delete a Spell</h2>
+                        <form method="POST" action="/spells/">
+                            {% csrf_token %}
+                            {{ form }}
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input id="name" type="text" class="form-control" placeholder="Name" name="sp_name" value="{{ sp_name }}">
+                            </div>
+                            <button class="btn btn-secondary" type="submit" name='deletebtn'>Delete</button>
+                        </form>
+                        <h1>Edit a Spell</h1>
+                        <form method="POST" action="/edit/">
+                            {% csrf_token %}
+                            {{ form }}
+                            <div class="form-group">
+                                <label>Name</label>
+                                <input id="name" type="text" class="form-control" placeholder="" name="sp_name" value="{{ sp_name }}">
+                            </div>
+                            <button class="btn btn-secondary" type="submit" name="editbtn">Edit</button>
                         </form>
                     </div>
                 </div>
