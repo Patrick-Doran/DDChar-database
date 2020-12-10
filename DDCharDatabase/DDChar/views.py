@@ -134,9 +134,13 @@ def edit(request):
         if 'editsubbtn' in request.POST:
             print("EDIT BUTTON")
             form = spellForm(request.POST or None)
-            if form.is_valid():
-                print("IS VALID")
-                form.save()
-                return render(request, "DDChar/spells.html", {})
+            sp_name = request.POST['sp_name']
+            sp_slotlevel = request.POST.get('sp_slotLevel', False)
+            sp_range = request.POST['sp_range']
+            sp_castingtype = request.POST['sp_castingtype']
+            sp_effect = request.POST['sp_effect']
+            sp_die = request.POST['sp_die']
+            spell_object = Spell(sp_name=sp_name, sp_slotlevel=sp_slotlevel, sp_range=sp_range, sp_castingtype=sp_castingtype, sp_effect=sp_effect, sp_die=sp_die)
+            spell_object.save()
     return render(request, "DDChar/spells.html", {})
 
